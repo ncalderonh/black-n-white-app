@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black and White Spa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <form id="imageForm" action="/process-image" method="POST">
+        <h2>Black and White Image Converter</h2>
+        <input type="text" name="imageUrl" placeholder="Enter Image URL" required>
+        <input type="submit" value="Convert to Black and White">
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fad text-center" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="imageModalLabel">Imagen procesada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="processedImage" src="" alt="Processed Image" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#imageForm').on('submit', function (e) {
+                e.preventDefault();
+                const form = $(this);
+                const url = form.attr('action');
+                const imageUrl = form.find('input[name="imageUrl"]').val();
+
+                $.post(url, { imageUrl: imageUrl }, function (data) {
+                    $('#processedImage').attr('src', data);
+                    $('#imageModal').modal('show');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
