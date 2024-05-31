@@ -16,11 +16,11 @@ La empresa "Black and White Spa" está promocionando una campaña para las redes
 
 1. Clona este repositorio:
     ```sh
-    git clone <URL_DEL_REPOSITORIO>
+    git clone https://github.com/ncalderonh/black-n-white-app.git
     ```
 2. Navega al directorio del proyecto:
     ```sh
-    cd black-and-white-spa
+    cd bnw-spa
     ```
 3. Instala las dependencias:
     ```sh
